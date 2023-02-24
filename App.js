@@ -2,6 +2,7 @@ import {
     FlatList,
     ImageBackground,
     StatusBar,
+    View
 } from 'react-native';
 import React
     , {
@@ -61,21 +62,19 @@ export default function App() {
   return (
       <>
           <StatusBar style="auto"></StatusBar>
-          <ImageBackground source={image} resizeMode="cover" style={styles.image}>
-          <TitleApp></TitleApp>
-          <FlatList
-              style={styles.GoalList}
-              data={goal}
-              renderItem={({ index, item }) => (<GoalList item={item} index={index} removeGoal={removeGoal}/>
-              )}
-          />
-          </ImageBackground>
-          <AddBar
-              addGoal={addGoal}
-              addNewGoal={addNewGoal}
-              removeGoal={removeGoal}
-          />
+          <ImageBackground source={image} resizeMode="cover">
+              <View style={{height:'100%'}}>
+              <TitleApp></TitleApp>
+              <FlatList
+                  style={{ paddingTop:'15%'}}
+                  data={goal}
+                  renderItem={({ index, item }) => (<GoalList item={item} index={index} removeGoal={removeGoal}/>
+                  )}
+              />
+                  <AddBar addGoal={addGoal} addNewGoal={addNewGoal}/>
+          </View>
 
+          </ImageBackground>
       </>
   );
 }

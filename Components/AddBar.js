@@ -1,8 +1,8 @@
 import {
-    Pressable,
     Text,
     TextInput,
-    View
+    View,
+    Pressable
 } from "react-native";
 import React
     from "react";
@@ -11,7 +11,7 @@ import styles
 
 const AddBar = ({addGoal, addNewGoal}) => {
     return (
-        <View style={{ flexDirection:'row', position: 'absolute', bottom:0, backgroundColor: 'white', width:'100%' }}>
+        <View style={{ flexDirection:'row', backgroundColor: 'white', width:'100%', opacity:.85 }}>
             <TextInput
                 onChangeText={addNewGoal}
                 variant="outlined"
@@ -19,9 +19,9 @@ const AddBar = ({addGoal, addNewGoal}) => {
                 style={{width:'80%', marginBottom:0, textAlign:'center' }} />
             <Pressable
                 onPress={addGoal}
-                style={{height: 56, width:'15%', backgroundColor: '#5471d2', borderRadius: 90
+                style={{height: 56, width:'20%', backgroundColor: '#5471d2'
                 }}
-                pressEffect={"ripple"}
+                android_ripple={{ color: 'skyblue' }}
             >
                 <Text
                     style={styles.button}>

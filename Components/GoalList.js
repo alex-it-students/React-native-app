@@ -10,7 +10,8 @@ const GoalList = ({index, item, removeGoal}) => {
 
     return (
         <>
-            <View style={{ flexDirection: 'row',
+            <View style={{
+                flexDirection: 'row',
                 justifyContent:'space-between',
                 borderStyle: 'solid',
                 borderColor: '#5c6773',
@@ -18,7 +19,7 @@ const GoalList = ({index, item, removeGoal}) => {
                 paddingVertical:20,
                 paddingHorizontal:15,
                 margin:0,
-                backgroundColor: 'rgba(255, 255, 255, 0.65)'}}>
+                backgroundColor: 'rgba(255, 255, 255, 0.85)'}}>
                 <Text style={{fontSize: 16}}>{item}</Text>
                 <TouchableOpacity onPress={()=> removeGoal(index)}>
                     <Text>X</Text>

@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         textAlign: 'center',
         fontSize: 30,
-        paddingTop: '5%'
+        paddingTop: '15%'
     },
     button:{
         textAlign: 'center',
@@ -22,10 +22,6 @@ const styles = StyleSheet.create({
         paddingTop: 6,
         color: 'white',
         fontSize: 30
-    },
-    GoalList: {
-        padding:40,
-        marginTop:'15%'
     }
 });
 

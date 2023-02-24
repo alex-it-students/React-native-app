@@ -1,54 +1,52 @@
-
 import {
-    StyleSheet,
-    Text,
-    View,
     FlatList,
-    TextInput,
-    Button,
+    ImageBackground,
     StatusBar,
-    TouchableOpacity
 } from 'react-native';
 import React
-  from "react";
+    , {
+    useEffect
+} from "react";
+import GoalList
+    from "./Components/GoalList";
+import AddBar
+    from "./Components/AddBar";
+import styles
+    from "./assets/styles";
+import TitleApp
+    from "./Components/TitleApp";
 
+const sampleGoals =         [
+    "Faire les courses",
+    "Aller à la salle de sport 3 fois par semaine",
+    "Monter à plus de 5000m d altitude",
+    "Acheter mon premier appartement",
+    "Perdre 5 kgs",
+    "Gagner en productivité",
+    "Apprendre un nouveau langage",
+    "Faire une mission en freelance",
+    "Organiser un meetup autour de la tech",
+    "Faire un triathlon",
+]
+
+const image = {uri: 'https://e0.pxfuel.com/wallpapers/684/261/desktop-wallpaper-material-design-114-color-iphone-cool-for-phones-galaxy-material-ui.jpg'};
 
 export default function App() {
 
-    const [goal, setGoal] = React.useState(
-        [
-            "Faire les courses",
-            "Aller à la salle de sport 3 fois par semaine",
-            "Monter à plus de 5000m d altitude",
-            "Acheter mon premier appartement",
-            "Perdre 5 kgs",
-            "Gagner en productivité",
-            "Apprendre un nouveau langage",
-            "Faire une mission en freelance",
-            "Organiser un meetup autour de la tech",
-            "Faire un triathlon",
-        ]
-    );
-    const [newGoal, setNewGoal] = React.useState("");
-
-  // fonction qui va render la ligne
-  const renderItem = ({ index, item }) => (
-      <View style={{ flexDirection:'row' }}>
-      <Text>{item} </Text>
-          <TouchableOpacity onPress={()=> removeGoal(index)}>
-              <Text>X</Text>
-          </TouchableOpacity>
-      </View>
-  );
+    const [goal, setGoal] = React.useState('');
+    const [newGoal, setNewGoal] = React.useState('');
+    useEffect(() => {
+        setGoal(sampleGoals);
+    }, []);
 
   // fonction qui prend en charge l'input
-    const textChange = (text) => {
+    const addNewGoal = (text) => {
         setNewGoal(text);
     };
 
     // fonction qui va ajouter la tâche
     const addGoal = () => {
-        setGoal([...goal, newGoal]);
+        setGoal([newGoal, ...goal]);
         setNewGoal("");
     }
 
@@ -60,48 +58,26 @@ export default function App() {
             return newState;
         });
     };
-
   return (
       <>
           <StatusBar style="auto"></StatusBar>
-          <View style={styles.container}>
-              <Text style={styles.title}>App.js</Text>
-              <FlatList
-                  data={goal}
-                  renderItem={renderItem}
-              />
+          <ImageBackground source={image} resizeMode="cover" style={styles.image}>
+          <TitleApp></TitleApp>
+          <FlatList
+              style={styles.GoalList}
+              data={goal}
+              renderItem={({ index, item }) => (<GoalList item={item} index={index} removeGoal={removeGoal}/>
+              )}
+          />
+          </ImageBackground>
+          <AddBar
+              addGoal={addGoal}
+              addNewGoal={addNewGoal}
+              removeGoal={removeGoal}
+          />
 
-          </View>
-          <View style={{ flexDirection:'row' }}>
-              <TextInput
-                  style={styles.input}
-                  onChangeText={textChange}
-                  value={newGoal}
-                  placeholder="Add a Task"
-              />
-              <Button style={styles.button} title="Submit" onPress={addGoal}/>
-          </View>
       </>
-
-
-
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  title:{
-      color: 'red',
-      fontWeight: 'bold',
-      paddingTop: 100,
-      paddingBottom: 50
-  },
-  button:{
-      alignSelf: "stretch"
-  }
-});
+

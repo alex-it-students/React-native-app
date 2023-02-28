@@ -26,9 +26,6 @@ const GoalList = ({index, item, removeGoal, editGoal}) => {
         setEditedGoal(item);
         setModalVisible(false);
     };
-
-    console.log(editedGoal)
-
     return (
         <>
             <View style={{

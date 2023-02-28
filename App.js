@@ -40,8 +40,6 @@ export default function App() {
     }, []);
 
 
-
-
   // fonction qui prend en charge l'input
     const addNewGoal = (text) => {
         setNewGoal(text);

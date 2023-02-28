@@ -43,41 +43,72 @@ const GoalList = ({index, item, removeGoal, editGoal}) => {
             <Modal
                 visible={modalVisible}
                 animationType={"fade"}
-                onRequestClose={() => {setModalVisible(!modalVisible);}}>
+                transparent={true}
+                >
                 <View
                     style={{
-                        backgroundColor: 'rgba(255, 255, 255, 0.7)',
+                        height:'100%',
+                        backgroundColor: 'rgba(255, 255, 255, 0.85)'}}>
+                <View
+                    style={{
+                        backgroundColor: 'rgba(255, 255, 255, 0.5)',
                         margin: 50,
+                        marginTop: '70%',
                         borderRadius: 10,
-                        padding: 20,
                         alignItems: 'center',
                         justifyContent: 'center'
                 }}>
-                    <View>
-                        <Text>Edit Task</Text>
+                    <View
+                        style={{
+                            flexDirection: 'row',
+                            justifyContent: 'space-between',
+                            width: '100%',
+                            backgroundColor:'#5471d2',
+                            color: 'white',
+                            padding: 10,
+                            borderTopLeftRadius: 10,
+                            borderTopRightRadius:10
+                        }}>
+                        <Text
+                            style={{color: 'white'}}>Edit Task</Text>
+                        <TouchableOpacity onPress={()=> setModalVisible(false)}>
+                            <Text
+                                style={{color: 'white'}}>X</Text>
+                        </TouchableOpacity>
                     </View>
                     <View
-                        style={{ height: 40, width: '100%' }}>
-
+                        style={{ height: 40, width: '100%', marginVertical:20 }}>
                         <TextInput
                             onChangeText={setEditedGoal}
                             variant="outlined"
                             value={editedGoal}
                             style={{ width: '100%', marginBottom: 0, textAlign: 'center' }} />
+                    </View>
+                    <View
+                        style={{
+                            width: '100%',
+                        }}>
                         <Pressable
                             onPress={handleEdit}
-                            style={{height: 56, width:'20%', backgroundColor: '#5471d2'
+                            style={{
+                                width:'100%',
+                                backgroundColor: '#5471d2',
+                                padding: 10,
+                                alignSelf:'center',
+                                borderBottomEndRadius:10,
                             }}
                             android_ripple={{ color: 'skyblue' }}
                         >
                             <Text
-                                style={myStyles.modalButton}>
+                                style={{
+                                    textAlign: 'center',
+                                    color:'white'}}>
                                 Edit Task
                             </Text>
                         </Pressable>
                     </View>
                 </View>
-
+                </View>
             </Modal>
         </>
     );

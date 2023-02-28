@@ -1,15 +1,14 @@
 import {
     Text
 } from "react-native";
-import styles
-    from "../assets/styles";
+import myStyles
+    from "../assets/myStyles";
 import React
     from "react";
 
 const TitleApp = () => {
     return (
-        <Text style={styles.title}>App.js</Text>
+        <Text style={myStyles.title}>App.js</Text>
     )
 }
-
 export default TitleApp

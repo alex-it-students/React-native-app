@@ -6,8 +6,8 @@ import {
 } from "react-native";
 import React
     from "react";
-import styles
-    from "../assets/styles";
+import myStyles
+    from "../assets/myStyles";
 
 const AddBar = ({addGoal, addNewGoal}) => {
     return (
@@ -24,7 +24,7 @@ const AddBar = ({addGoal, addNewGoal}) => {
                 android_ripple={{ color: 'skyblue' }}
             >
                 <Text
-                    style={styles.button}>
+                    style={myStyles.button}>
                     +
                 </Text>
             </Pressable>

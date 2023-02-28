@@ -2,7 +2,7 @@ import {
     StyleSheet
 } from "react-native";
 
-const styles = StyleSheet.create({
+const myStyles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
@@ -22,7 +22,17 @@ const styles = StyleSheet.create({
         paddingTop: 6,
         color: 'white',
         fontSize: 30
+    },
+    myModal:{
+        height: '60%'
+    },
+    modalButton:{
+        textAlign: 'center',
+        height: 50,
+        padding: 10,
+        color: 'white',
+        fontSize: 20
     }
 });
 
-export default styles
+export default myStyles

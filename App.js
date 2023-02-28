@@ -6,14 +6,12 @@ import {
 } from 'react-native';
 import React
     , {
-    useEffect
+    useEffect, useState
 } from "react";
 import GoalList
     from "./Components/GoalList";
 import AddBar
     from "./Components/AddBar";
-import styles
-    from "./assets/styles";
 import TitleApp
     from "./Components/TitleApp";
 
@@ -34,8 +32,8 @@ const image = {uri: 'https://e0.pxfuel.com/wallpapers/684/261/desktop-wallpaper-
 
 export default function App() {
 
-    const [goal, setGoal] = React.useState('');
-    const [newGoal, setNewGoal] = React.useState('');
+    const [goal, setGoal] = useState('');
+    const [newGoal, setNewGoal] = useState('');
     useEffect(() => {
         setGoal(sampleGoals);
     }, []);
@@ -50,6 +48,16 @@ export default function App() {
         setGoal([newGoal, ...goal]);
         setNewGoal("");
     }
+
+    //fonction qui va effacer la tâche
+    const editGoal = (index, editedGoal) => {
+        setGoal((prevState) => {
+            const newState = [...prevState];
+            newState[index] = editedGoal;
+            return newState;
+        });
+    };
+
 
     //fonction qui va effacer la tâche
     const removeGoal = (index) => {
@@ -68,7 +76,7 @@ export default function App() {
               <FlatList
                   style={{ paddingTop:'15%'}}
                   data={goal}
-                  renderItem={({ index, item }) => (<GoalList item={item} index={index} removeGoal={removeGoal}/>
+                  renderItem={({ index, item }) => (<GoalList item={item} index={index} removeGoal={removeGoal} editGoal={editGoal}/>
                   )}
               />
                   <AddBar addGoal={addGoal} addNewGoal={addNewGoal}/>

@@ -32,11 +32,15 @@ const image = {uri: 'https://e0.pxfuel.com/wallpapers/684/261/desktop-wallpaper-
 
 export default function App() {
 
-    const [goal, setGoal] = useState('');
+    const [goal, setGoal] = useState([]);
     const [newGoal, setNewGoal] = useState('');
+
     useEffect(() => {
         setGoal(sampleGoals);
     }, []);
+
+
+
 
   // fonction qui prend en charge l'input
     const addNewGoal = (text) => {
@@ -58,15 +62,16 @@ export default function App() {
         });
     };
 
-
     //fonction qui va effacer la tâche
     const removeGoal = (index) => {
         setGoal((prevState) => {
             const newState = [...prevState];
             newState.splice(index, 1);
             return newState;
+
         });
     };
+
   return (
       <>
           <StatusBar style="auto"></StatusBar>
@@ -76,7 +81,7 @@ export default function App() {
               <FlatList
                   style={{ paddingTop:'15%'}}
                   data={goal}
-                  renderItem={({ index, item }) => (<GoalList item={item} index={index} removeGoal={removeGoal} editGoal={editGoal}/>
+                  renderItem={({ index, item }) => (<GoalList key={index} item={item} index={index} removeGoal={removeGoal} editGoal={editGoal}/>
                   )}
               />
                   <AddBar addGoal={addGoal} addNewGoal={addNewGoal}/>

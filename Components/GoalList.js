@@ -8,18 +8,26 @@ import {
 } from "react-native";
 import React
     , {
+    useEffect,
     useState
 } from "react";
-import myStyles
-    from "../assets/myStyles";
 
 const GoalList = ({index, item, removeGoal, editGoal}) => {
     const [modalVisible, setModalVisible] = useState(false);
     const [editedGoal, setEditedGoal] = useState(item);
+    useEffect(() => {
+        setEditedGoal(item);
+    }, [item]);
+
+
+
     const handleEdit = () => {
         editGoal(index, editedGoal);
+        setEditedGoal(item);
         setModalVisible(false);
     };
+
+    console.log(editedGoal)
 
     return (
         <>
@@ -51,12 +59,15 @@ const GoalList = ({index, item, removeGoal, editGoal}) => {
                         backgroundColor: 'rgba(255, 255, 255, 0.85)'}}>
                 <View
                     style={{
-                        backgroundColor: 'rgba(255, 255, 255, 0.5)',
+                        backgroundColor: 'rgba(255, 255, 255, 1)',
                         margin: 50,
                         marginTop: '70%',
                         borderRadius: 10,
                         alignItems: 'center',
-                        justifyContent: 'center'
+                        justifyContent: 'center',
+                        borderStyle: 'solid',
+                        borderWidth: 1,
+                        borderColor: '#5c6773'
                 }}>
                     <View
                         style={{
@@ -79,10 +90,10 @@ const GoalList = ({index, item, removeGoal, editGoal}) => {
                     <View
                         style={{ height: 40, width: '100%', marginVertical:20 }}>
                         <TextInput
-                            onChangeText={setEditedGoal}
+                            onChangeText={(text) => setEditedGoal(text)}
                             variant="outlined"
                             value={editedGoal}
-                            style={{ width: '100%', marginBottom: 0, textAlign: 'center' }} />
+                            style={{ width: '100%', marginBottom: 0, textAlign: 'center'}} />
                     </View>
                     <View
                         style={{
@@ -95,7 +106,8 @@ const GoalList = ({index, item, removeGoal, editGoal}) => {
                                 backgroundColor: '#5471d2',
                                 padding: 10,
                                 alignSelf:'center',
-                                borderBottomEndRadius:10,
+                                borderBottomLeftRadius:10,
+                                borderBottomRightRadiusRadius:10
                             }}
                             android_ripple={{ color: 'skyblue' }}
                         >
